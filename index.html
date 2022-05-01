@@ -105,17 +105,32 @@
           
           
           
+       var canvasBlue = document.getElementById('myCanvasBlue'); //command creates new canvas with id 'myCanvasBlue'
+         var contextBlue = canvasBlue.getContext("2d"); // command draws 2D image on canvas
+         
+         var imageData = context.getImageData(0, 0, 600, 500); //command specifies where the image is placed on the canvas (x, y, width, height)
+         var data = imageData.data; // command codes for the pixel data of an area of the canvas object
+          
+         for(var i = 0, n = data.length; i < n; i += 4) { // command that displays only blue pixels on the second canvas
+         
+              data[i] = 0; //sets the green intensity to zero
+              data[i + 1] = 0; //sets the red intensity to zero
+         }
+         
+         contextBlue.putImageData(imageData, 0, 0); // command that rewrites the original image to display only blue intensities
+         
+         
         } // end of img.onload
         
         img.src = reader.result;
       } //  end of reader.onload
       
       reader.readAsDataURL(file);
-    } // end of the if statement checking that file is an image
+    } // end of the if statement 
     else
     {
       // this is what happens if the orignial file selected is not an image file
-      messageDisplayArea.innerHTML = "File not supported!"
+      messageDisplayArea.innerHTML = "File not supported"
     } // end of the else statement if file in NOT an image
   }); // end of the fileInput.addEventListener function
  } // end of the window.onload function
@@ -125,24 +140,38 @@
  <body>
   <div data-role="page">
     <div data-role="header">
-    <h1>Primary Colors</h1></div><!-- /header -->
+     
+     
+    <h1>Primary Colors</h1></div><!-- header -->
     <div data-role="content">	
-      <h2>Push button to take picture.</h2>
+     
+      <h2>Push the button to take a picture.</h2> <!--text header will appear in the space below the main header-->
       <div>
-        Press orange button to create or choose image file:
+       
+        Press button to create or choose an image file: <!--code allows an image file to be uploaded-->
         <input type="file" id="fileInput" STYLE="background-color: #FF6600;">
       </div>
+     
       <div id="messageDisplayArea"></div>
       
-      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas>
+      <canvas id="myCanvas" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!--HTML and script code for setting up the first canvas, which will display the original image that is uploaded-->
       <script> /* This script initiates the cavas and puts the text on the canvas "myCanvas" */
-        var canvas = document.getElementById('myCanvas');
-        var context = canvas.getContext("2d");
-        context.font = '20pt Calibri';
-        context.fillStyle = "black";
-        context.fillText("Original image will go here", 10, 20);
-      </script>
-
+        var canvas = document.getElementById('myCanvas'); // command calls 'myCanvas' and imputs it into the canvas variable
+        var context = canvas.getContext("2d"); // command uses the canvas function to display 2d image
+        context.font = '20pt Calibri'; // command sets the font size and style
+        context.fillStyle = "black"; // command sets the text fill color
+        context.fillText("Original image will go here", 150,250 ); // inserts place holder text and coordinates of it until image is selected ("text", x, y)
+     </script>
+     
+      <canvas id="myCanvasBlue" width=600 height=500 style="border:1px solid #d3d3d3;"></canvas> <!--HTML and script code for setting up the second canvas, which will display the same image with only the blue intensities of the pixels being shown-->
+      <script>
+      var canvasBlue = document.getElementById('myCanvasBlue'); // command calls "myCanvasBlue" and imputs it into the canvasBlue variable
+      var contextBlue = canvasBlue.getContext("2d"); // command uses the canvasBlue funtion to display 2d image
+      contextBlue.font = '20pt Calibri'; // command sets the font size and style
+      contextBlue.fillStyle = "black"; // command sets the text fill color
+      contextBlue.fillText("New image will go here", 150,250); // inserts place holder text and coordinates of it until image is selected ("text", x, y)
+     </script>
+       
     </div><!-- /content -->
     <div data-role="footer" data-position="fixed">
       <p>DIY Diagnostics</p>
