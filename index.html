@@ -113,8 +113,8 @@
           
          for(var i = 0, n = data.length; i < n; i += 4) { // command that displays only blue pixels on the second canvas
          
-              data[i] = 0; //sets the green intensity to zero
-              data[i + 1] = 0; //sets the red intensity to zero
+              data[i] = 0; //sets green intensity to zero
+              data[i + 1] = 0; //sets red intensity to zero
          }
          
          contextBlue.putImageData(imageData, 0, 0); // command that rewrites the original image to display only blue intensities
