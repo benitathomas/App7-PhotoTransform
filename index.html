@@ -111,7 +111,7 @@
          var imageData = context.getImageData(0, 0, 600, 500); //command specifies where the image is placed on the canvas (x, y, width, height)
          var data = imageData.data; // command codes for the pixel data of an area of the canvas object
           
-         for(var i = 0, n = data.length; i < n; i += 4) { // command that displays only blue pixels on the second canvas
+         for(var i = 0, n = data.length; i < n; i += 4) { // command to displays only blue pixels on the second canvas
          
               data[i] = 0; //sets green intensity to zero
               data[i + 1] = 0; //sets red intensity to zero
